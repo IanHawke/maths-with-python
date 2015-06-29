@@ -13,7 +13,7 @@ The result, after conversion, must be LaTeX included in a master document.
 ((* endblock header *))
 
 ((* block body *))
-    \begin{chapter}{((( resources.metadata.name | ascii_only | escape_latex )))}
+    \begin{chapter}{((( nb.metadata.get('nbconvert', {}).get('title', resources.metadata.name) | ascii_only | escape_latex )))}
 
     ((* block predoc *))
     ((* endblock predoc *))
