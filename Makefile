@@ -1,17 +1,19 @@
-Testing.pdf: Testing.tex
-	pdflatex Testing.tex
-	pdflatex Testing.tex
-Testing.tex: Testing.ipynb article-mod.tplx
-	ipython nbconvert --to latex --template=article-mod.tplx Testing.ipynb
-#Testing.tex: Testing.md listings-setup.tex
-#	pandoc Testing.md --listings -H listings-setup.tex --to latex -o Testing.tex
+FirstYearComputing_Master.pdf: FirstYearComputing_Master.tex \
+	00-first-steps.tex 01-python-basics.tex 02-programs.tex \
+	03-loops-control-flow.tex 04-basic-plotting.tex \
+	05-classes-oop.tex 06-exceptions-debugging-testing.tex 07-numpy-plotting.tex \
+	08-sympy.tex
+	pdflatex $<
+	pdflatex $<
+
+
 
 %.pdf: %.tex %.ipynb
 	pdflatex $<
 	pdflatex $<
 
-%.tex: %.ipynb article-mod.tplx
-	ipython nbconvert --to latex --template=article-mod.tplx $<
+%.tex: %.ipynb chapter-base.tplx
+	ipython nbconvert --to latex --template=chapter-base.tplx $<
 
 clean:
 	rm *.{out,log,aux}
