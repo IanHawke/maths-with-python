@@ -1,4 +1,7 @@
 0*tex
+*aux
+*out
+*log
 *pdf
 0*files
 .ipynb_checkpoints
