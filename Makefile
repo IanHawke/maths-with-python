@@ -13,7 +13,7 @@ FirstYearComputing_Master.pdf: FirstYearComputing_Master.tex \
 	pdflatex $<
 
 %.tex: %.ipynb chapter-base.tplx
-	ipython nbconvert --to latex --template=chapter-base.tplx $<
+	ipython nbconvert --to latex --template=chapter-ipython.tplx $<
 
 clean:
 	rm *.{out,log,aux}
