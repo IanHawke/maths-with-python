@@ -18,3 +18,6 @@ FirstYearComputing_Master.pdf: FirstYearComputing_Master.tex \
 clean:
 	rm *.{out,log,aux}
 	rm -rf auto
+	rm 0*tex
+	rm -rf 0*files
+	
