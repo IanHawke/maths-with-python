@@ -21,7 +21,7 @@ ExercisesSolutions.tex: ExercisesSolutions.ipynb
 	ipython nbconvert --to latex $<
 
 clean:
-	rm -f *.{out,log,aux}
+	rm -f *.{out,log,aux,toc}
 	rm -rf auto
 	rm -f 0*tex
 	rm -rf 0*files
