@@ -24,7 +24,7 @@ ExercisesSolutions.tex: ExercisesSolutions.ipynb
 clean:
 	rm -f *.{out,log,aux,toc}
 	rm -rf auto
-	rm -f 0*tex
-	rm -rf 0*files
+	rm -f [01]*tex
+	rm -rf [01]*files
 	rm -f Exercises*tex
 	rm -rf Exercises*files
