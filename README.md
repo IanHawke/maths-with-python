@@ -4,10 +4,11 @@ Gathering some material for a Python class aimed at first year undergraduate mat
 
 To build these notes you will need
 
-* python (2.7+, not 3 at present, although nearly everything will run on 3 as intended)
+* python (3.3+)
 * ipython (3+)
-* ipython-notebook
+* ipython-notebook (not yet tested with jupyter)
 * scipy stack (scipy, sympy, numpy, matplotlib)
 * latex
 * nose
 * watermark line magic (see https://github.com/rasbt/watermark)
+* memory profiler line magic (see https://pypi.python.org/pypi/memory_profiler)
