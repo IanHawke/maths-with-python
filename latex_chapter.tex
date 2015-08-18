@@ -30,6 +30,34 @@ A full \LaTeX\ document can be very complex as it controls \emph{every} aspect o
 
 \subsection{A basic document}
 
-Download a simple \LaTeX\ document \href{}{from this link}. Open it in whichever editor you are using, and build it so you can see the output (which should look like \href{}{this pdf file}). If using TeXnicCentre on the University machines, you should be able to do this by running ``Build and View'' from the ``Build'' menu.
+Download a simple \LaTeX\ document \href{https://raw.githubusercontent.com/IanHawke/maths-with-python/master/latex/BasicLatex.tex}{from this link}. Open it in whichever editor you are using, and build it so you can see the output (which should look like \href{https://github.com/IanHawke/maths-with-python/raw/master/latex/BasicLatex.pdf}{this pdf file}). If using TeXnicCentre on the University machines, you should be able to do this by running ``Build and View'' from the ``Build'' menu.
+
+You should compare the document with the built PDF file. In particular note, as stated in the document,
+%
+\begin{itemize}
+  \item that anything before the ``\verb|\begin{document}|'' (the \emph{preamble}) doesn't show explicitly, but changes global properties of the document,
+  \item how whitespace works,
+  \item how anything ``special'' starts ``\verb|\|'',
+  \item how quote characters behave (compare with ''this''),
+  \item how curly braces \verb|{| and \verb|}| are used without
+    appearing,
+  \item how \emph{environments} always \verb|\begin| and
+      \verb|\end|,
+  \item and how the \verb|\section| command works.
+\end{itemize}
+%
+You should edit and re-build the document so that you can see the effects of adding standard text, new sections (or subsections), and so on.
+
+\subsection{Mathematics and references}
+
+Now download \emph{both} \href{https://raw.githubusercontent.com/IanHawke/maths-with-python/master/latex/BasicLatexBibtex.tex}{this \LaTeX document} and \href{https://raw.githubusercontent.com/IanHawke/maths-with-python/master/latex/nummeth.bib}{this bibliography file}. Again, build this document and view the results.
+
+\subsubsection{The build process}
+
+Some editors will (or will let you) build the document one step at a time. In this case you may have perform multiple build steps. For example, the first build step will produce a document that \href{https://raw.githubusercontent.com/IanHawke/maths-with-python/master/latex/BasicLatexBibtex_pass1.pdf}{looks like this}. At this point none of the cross-references are correct, but appear as ``\textbf{?}'', and there is no bibliography. The second build step will create the bibliography, but will not change the document. The third build step will produce a document that \href{https://raw.githubusercontent.com/IanHawke/maths-with-python/master/latex/BasicLatexBibtex_pass2.pdf}{looks like this}. At this point cross-references to sections and equations are correct, and the bibliography is included. However, the cross-references to the bibliography are not correct. A fourth build step will produce a document that \href{https://raw.githubusercontent.com/IanHawke/maths-with-python/master/latex/BasicLatexBibtex_pass3.pdf}{looks like this}, with all references correct.
+
+\subsubsection{Mathematics}
+
+
 
 \end{chapter}
