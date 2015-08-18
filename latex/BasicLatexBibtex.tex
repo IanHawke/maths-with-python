@@ -1,0 +1,55 @@
+\documentclass[a4paper]{article}
+
+\begin{document}
+
+
+\section{Sections split up your document}
+\label{sec:TopSection}
+
+
+\subsection{Subsections are also useful}
+\label{sec:SubSection}
+
+Note that different \LaTeX\ classes (\texttt{article}, \texttt{book},
+etc.) allow for different sectioning commands.
+
+
+\subsection{Another subsection}
+\label{sec:SubSection2}
+
+\LaTeX is very good at cross-referencing; the ``discussion'' of
+different sectioning commands occurred in section~\ref{sec:SubSection}
+on page~\pageref{sec:SubSection}.
+
+
+\section{Mathematics}
+\label{sec:Maths}
+
+Mathematics can be included inline, as in $x = y$, or in displayed
+equations such as
+%
+\begin{equation}
+  \label{eq:TaylorThm}
+  f(x) = f(c) + f'(c) (x - c) + \frac{f''(c)}{2!} (x - c)^2 + \ldots +
+  \frac{f^{(n)}(c)}{n!} (x - c)^n + \ldots
+\end{equation}
+%
+The advantage of the displayed equation is that it can be
+cross-referenced; that was equation~\ref{eq:TaylorThm}.
+
+\subsection{Bibliographies}
+\label{sec:BibTeX}
+
+
+Nearly everybody wants to cite other work, such as~\cite{godunov}.
+
+\bibliographystyle{plain}
+\bibliography{nummeth}
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

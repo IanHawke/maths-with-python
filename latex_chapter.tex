@@ -6,7 +6,10 @@ Producing high quality mathematical documents that show equations, figures and r
 
 \LaTeX\ takes a plain text file and converts it into a document, often in PDF format, containing all the equations, figures and cross-references. In this sense it's similar to python: you start from a plain text file and \emph{build} it to produce a result.
 
+\LaTeX\ documents are often complex, but many are available online. A standard technique is to find a \LaTeX document that does what you want online, and take the key commands from that.
+
 \section{Installing or finding}
+\label{sec:installing}
 
 \LaTeX\ is free software and there's lots of available implementations. As with python, a \LaTeX\ document is plain text and can be written using any text editor. However, specific \LaTeX\ editors can help in rapidly writing documents with fewer errors.
 
@@ -21,6 +24,8 @@ If using a Linux or Mac, \LaTeX\ should be installed automatically. There are ma
 \subsection{Online}
 
 There are browser-based \LaTeX\ editors which can be used, such as \href{https://www.overleaf.com/}{Overleaf} and \href{https://www.sharelatex.com/}{ShareLaTeX}. There are obvious advantages -- there's no need to install anything, it's backed up externally, and it builds the document for you. The balancing disadvantages are also there -- needs a network connection, the online editor isn't as full featured as special desktop versions, and keeping your work private requires paying.
+
+Overleaf also \href{https://www.overleaf.com/latex/learn/free-online-introduction-to-latex-part-1}{hosts an online tutorial on \LaTeX} that works through the essential points.
 
 \subsection{\LaTeX\ in other formats}
 
@@ -50,7 +55,7 @@ You should edit and re-build the document so that you can see the effects of add
 
 \subsection{Mathematics and references}
 
-Now download \emph{both} \href{https://raw.githubusercontent.com/IanHawke/maths-with-python/master/latex/BasicLatexBibtex.tex}{this \LaTeX document} and \href{https://raw.githubusercontent.com/IanHawke/maths-with-python/master/latex/nummeth.bib}{this bibliography file}. Again, build this document and view the results.
+Now download \emph{both} \href{https://raw.githubusercontent.com/IanHawke/maths-with-python/master/latex/BasicLatexBibtex.tex}{this \LaTeX\ document} and \href{https://raw.githubusercontent.com/IanHawke/maths-with-python/master/latex/nummeth.bib}{this bibliography file}. Again, build this document and view the results.
 
 \subsubsection{The build process}
 
@@ -58,6 +63,404 @@ Some editors will (or will let you) build the document one step at a time. In th
 
 \subsubsection{Mathematics}
 
+To include mathematical notation inline, commands should be placed between dollar signs, \verb|$...$|, so that \verb|$\pi$| gives $\pi$. To create a \emph{displayed} equation, use the \texttt{equation} environment, as in
+%
+\begin{equation}
+  \label{eq:label_example}
+  x = y + z.
+\end{equation}
+%
+Note that the ``\verb|\label{...}|'' command allows the equation to be cross-referenced using the ``\verb|\ref{...}|'' command, giving equation \ref{eq:label_example}.
 
+As seen above, Greek characters in mathematics are the letter preceded by the backslash, so \verb|$\theta$| gives $\theta$. To produce subscripts, use the underscore \verb|_|, and for superscripts the caret \verb|^|. So \verb|$x_1^2$| gives $x_1^2$. To group characters together, use the curly braces \verb|{}|. You need to do this, for example, if you want more than one character to appear in sub- or superscripts. Hence \verb|$F_n-2$| gives $F_n-2$, but \verb|$F_{n-2}$| gives $F_{n-2}$.
+
+Standard mathematical commands and symbols are also preceded by backslashes, such as \verb|$\int$| ($\int$), \verb|$\sum$| ($\sum$), and \verb|$\infty$| ($\infty$). A more complete list \href{https://en.wikibooks.org/wiki/LaTeX/Mathematics}{can be found online}, and for more obscure symbols the online \href{http://detexify.kirelabs.org/classify.html}{handwriting recognition trick} is very useful.
+
+\subsection{Cross-referencing and bibliographies}
+
+We saw above how the \texttt{equation} environment could include a \verb|\label| which allowed it to be cross-referenced using the \verb|\ref| command. This can be done for any environment which takes a number; for example, the section on installing \LaTeX\ above has the label \verb|\label{sec:installing}|, and can be cross-referenced using \verb|\ref{sec:installing}|, giving section~\ref{sec:installing}.
+
+For citing references -- books, papers, websites etc.\ -- we instead use the \verb|\cite| command. This looks for the article within the \emph{Bibtex} file that has the specific \emph{key}. In the document here, the command \verb|\cite{godunov}| tells \LaTeX\ that the key is ``\verb|godunov|'', and the command \verb|\bibliography{nummeth}| tells it that the Bibtex file is in \texttt{nummeth.bib}.
+
+The structure of the Bibtex file can look complex. There are many shortcuts -- for example, by searching for the reference on Google Scholar, and then clicking on the ``Cite'' link, it will give the Bibtex entry that you can simply copy and paste into your file. For alternatives, see section~\ref{sec:Citations}.
+
+
+\LaTeX\ is most useful for creating long documents (journal articles, theses, etc.) containing substantial mathematics. Sectioning, cross-referencing and bibliographies we have already seen. There are a number of additional features to make the creation of long documents easier.
+
+These are gathered in a logical order below, but for most purposes the discussion of commands (section~\ref{sec:commands}), provided packages (section~\ref{sec:packages_provided}), and modularity (section~\ref{sec:modularity}) will be of most use.
+
+\section{Commands}
+\label{sec:commands}
+
+\subsection{Defining commands}
+\label{sec:commands_defn}
+
+Firstly, user-defined commands can replace long sequences with a short, or more memorable, version. For example, a simple partial derivative
+%
+\begin{equation}
+  \label{eq:example_pd_1}
+  \frac{\partial y}{\partial x}
+\end{equation}
+%
+can be written \verb|\frac{\partial y}{\partial x}|. The equivalent shorthand
+%
+\begin{equation}
+  \label{eq:example_pd_2}
+  \pda{y}{x}
+\end{equation}
+%
+can be written, for example, \verb|\pda{y}{x}|. This is both clearer and shorter.
+
+The command \verb|\pda| is defined in the \emph{document preamble}: after the \verb|\documentclass| command but before the \verb|\begin{document}| statement. The definition used here is
+%
+\begin{center}
+  \verb|\newcommand{\pda}[2]{\frac{\partial {#1}}{\partial {#2}}}|
+\end{center}
+%
+which requires some explanation:
+\begin{itemize}
+\item Obviously \verb|\newcommand{\pda}| defines the new command
+  \verb|\pda|.
+\item The statement \verb|[2]| says that the command has two arguments
+  (in the example \verb|\pda{y}{x}| the arguments are \verb|y| and
+  \verb|x| respectively). For commands that take no arguments (e.g.\
+  where you are just defining a shorthand, such as the command
+  \verb|\uos| defined at the start of this document which expands to
+  \uos) this part is absent.
+\item The rest of the line defines the command, and is enclosed in
+  braces \verb|{...}| for safety. The arguments are referred to by the
+  \verb|#| statements; e.g., in the example above \verb|#1|
+  corresponds to \verb|y| and \verb|#2| to \verb|x|. Again, the
+  arguments are typically enclosed in braces \verb|{...}| for safety.
+\end{itemize}
+
+\subsection{Redefining commands}
+\label{sec:commands_redefn}
+
+Sometimes a command already exists with the shorthand name that you want to use, but does not do what you expect or want. In this case it can be redefined using the command \verb|\renewcommand|. This works in exactly the same way as \verb|\newcommand|, except the command must already exist (note that if the command already exists then trying to (re)define it with \verb|\newcommand| will give an error).
+
+The classic example is typesetting vectors using the \LaTeX\ command \verb|\vec|. By default this puts an arrow above the argument, similar to (but smaller than) the command \verb|\overrightarrow| which produces, e.g., $\overrightarrow{AB}$. Many people typeset vectors use bold fonts, which can be done using e.g.\
+%
+\begin{center}
+  \verb|\renewcommand{\vec}[1]{\mathbf{#1}}|
+\end{center}
+%
+which produces the output $\vec{a}$.
+
+\section{Environments}
+\label{sec:environments}
+
+As we have seen, commands are not the only things that \LaTeX\ provides. It also provides \emph{environments} which are enclosed within \verb|\begin{...}| and \verb|\end{...}| statements. Standard environments are \verb|equation| and \verb|document|.
+
+Just as with commands it is possible to define new environments (using the \verb|\newenvironment| command in the document preamble) or redefine old ones (using the \verb|\renewenvironment| command). The usage is similar to that of \verb|\newcommand| as well: the main difference is that instead of defining what the command does, you define what should happen before entering and after exiting the environment.
+
+A simple example is
+%
+\begin{verbatim}
+\newenvironment{solution}[1]{%
+  \begin{center}
+    \rule{#1}{.1pt}
+  \end{center}
+}{%
+  \begin{center}
+    \rule{0.9\textwidth}{.1pt}
+  \end{center}
+}
+\end{verbatim}
+%
+which defines a \verb|solution| environment.
+
+The explanation of each piece is as follows:
+\begin{itemize}
+\item \verb|\newenvironment{solution}|: the definition of the name of the new environment.
+\item \verb|[1]|: the number of arguments pass in (here 1).
+\item \verb|{\begin{center} \rule{#1}{.1pt} \end{center} }|: in the definition these are spaced using carriage returns and comment markers for clarity, but by matching the curly braces this can be seen to be just one argument. These are the commands issued before entering the environment. \verb|#1| is the first argument passed in.
+\item \verb|{\begin{center} \rule{\rule{0.9\textwidth}{.1pt} \end{center} }|: again this was spaced for clarity in the definition. These are the commands issued after exiting the environment. No arguments can be used at this point.
+\end{itemize}
+
+This environment, used as
+%
+\begin{verbatim}
+\begin{solution}{0.9\textwidth}
+  This is the solution.
+\end{solution}
+\end{verbatim}
+%
+produces the output
+%
+\begin{solution}{0.9\textwidth}
+  This is the solution.
+\end{solution}
+%
+
+\section{Packages}
+\label{sec:packages}
+
+In essence a package is just a file containing a number of useful commands and environments, as explained in sections~\ref{sec:commands} and \ref{sec:environments}. So, rather than hand-defining a large number of commands you can import them all by including code such as
+%
+\begin{verbatim}
+\usepackage{amsmath}
+\end{verbatim}
+%
+in the document preamble.
+
+This is particularly important when producing journal articles. Many journals require (or strongly encourange) you to submit articles fitting in with their in-house style. Many scientific journals will therefore provide a \LaTeX\ package to use in the production of your article.
+
+\subsection{Useful packages}
+\label{sec:packages_provided}
+
+Most \LaTeX\ distributions will include the following packages which are extremely useful:
+\begin{itemize}
+\item \texttt{graphicx} or \texttt{graphics}: commands to import and manipulate graphics files.
+\item \texttt{amsmath} (and \texttt{amssymb} and \texttt{amsthm}): The American Mathematical Society \LaTeX\ package. A large number of useful commands, especially for aligning equations (see \verb|\align| and related).
+\item \texttt{fancyhdr}, \texttt{enumerate}, \texttt{caption}, \texttt{geometry}: control the document layout and appearance in a more transparent fashion. \texttt{fancyhdr} in particular is useful for producing headers for theses.
+\item \texttt{babel}: if you want to typeset anything in a language other than English, this package provides a lot of support.
+\item \texttt{hyperref}: transforms citations and cross-references into hyperlinks. Particularly useful when compiling direct to PDF.
+\item \texttt{natbib} or \texttt{biblatex}: most will find the default citation styles sufficient (or, for articles, journals will frequently provide their own). If you require something more controllable then these packages give you that power (\texttt{natbib} is much older and practically obsolete, but has lots of examples and is in widespread use. \texttt{biblatex} is much newer and very powerful but with far fewer examples and requires a modern \LaTeX\ distribution).
+\end{itemize}
+
+\subsection{Creating packages}
+\label{sec:packages_creating}
+
+At its heart a package just contains the commands you would have placed in the document preamble. However, there are a few additional commands and points to be careful of.
+
+\begin{itemize}
+\item \verb|\ProvidesPackage{<name>}[<string>]|: this command defines the name of the package \verb|<name>| (which should match its filename) and an optional description \verb|<string>|.
+\item \verb|\RequirePackage{<package>}|: instead of putting \verb|\usepackage{<package>}| inside a package, this command allows \LaTeX\ to check if \verb|<package>| has already been loaded, and if not, does so.
+\item \verb|\DeclareOption|, \verb|ExecuteOptions|, \verb|\ProcessOptions|: allows you to pass options to the package (and hence options to commands in the package).
+\end{itemize}
+
+Package files should have a \verb|.sty| extension.
+
+\section{Modularity}
+\label{sec:modularity}
+
+Long documents are typically composed of many chapters and sections using a variety of data. Working on a single long document is inefficient and confusing. It is better to split the document into multiple chunks corresponding to the structure of the document. \LaTeX\ has two ways of doing this.
+
+\subsection{Input}
+\label{sec:modularity_input}
+
+The command \verb|\input| simply imports a file, as if it were ``cut and paste'' into the current document. This could be done right here, with a file imported into the middle of a paragraph. The \verb|\input| command takes the name of the file to be imported without the \texttt{.tex} extension. Once the file is imported the document continues as normal.
+
+The \verb|\input| command is somewhat inflexible. My personal viewpoint is that its main use is for importing data produced by or stored in external formats. For example, if you have a code that produces a table with 50 entries, it will be safer to make your code output the results directly into a \LaTeX\ table format which can then be \verb|\input| into a document, rather than trying to copy all the data by hand.
+
+\subsection{Include}
+\label{sec:modularity_include}
+
+The alternative to the \verb|\input| command is the \verb|\include| command. Its use is exactly the same as the \verb|\input| command -- the only argument is the name of the file to be included, without the \texttt{.tex} extension. There are two main differences.
+
+The first difference, as is clear from this document, is that the text imported via the \verb|\include| command always starts on a new page, and there will be a new page inserted (via a page break) after the included content as well. For this reason the \verb|\include| statement is typically used in long documents -- reports or theses -- where each included file contains a full chapter.
+
+The second difference is the main advantage of the \verb|\include| command. You can selectively include only certain files whilst leaving all the \verb|\include| statements in place. For example, consider an outline document
+%
+\begin{verbatim}
+\documentclass{book}
+
+\includeonly{chapter2}
+
+\begin{document}
+
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+
+\end{document}
+\end{verbatim}
+%
+This document should consist of three chapters. If we are working just on chapter 2 then we can concentrate solely on that by using the \verb|\includeonly| command to produce only the output for that chapter. However, all cross-references to the other chapters will still be correctly resolved (provided that they have been compiled at least once).
+
+\section[Additional commands]{Additional commands for long documents}
+\label{sec:additional}
+
+This contains a list of commands that are often useful for long reports and theses.
+%
+\begin{itemize}
+\item \verb|\maketitle|: Produces a title page based on the \verb|\author|, \verb|\title| and \verb|\date| (which must be set after the \verb|\begin{document}| but before the \verb|\maketitle|).
+\item \verb|\appendix|: as just used here, this converts the section or chapter numbering to use letters instead of numbers.
+\item \verb|\tableofcontents|: inserts a table of contents containing the titles of chapters, sections, subsections (there are parameters to control the depth).
+
+Note that if a title is extremely long it may not fit in the table of contents (or in the headers). All sectioning commands provide an option for a short title to be used in headers, table of contents and similar circumstances. An example is the title for this appendix where a short title of ``Additional commands'' can be produced using
+\begin{verbatim}
+\section[Additional commands]{Additional commands for long documents}
+\end{verbatim}
+\item \verb|\listoffigures|, \verb|\listoftables|: inserts the appropriate lists based on the captions of figures and tables. Here you will almost certainly want to use the optional short form for the captions.
+\item \verb|\frontmatter|, \verb|\mainmatter|, \verb|\backmatter|: only avaiable for \verb|book| class, this explicitly changes the page numbering to Roman letters or Arabic numerals respectively.
+\end{itemize}
+
+\section{Citations and bibliographies}
+\label{sec:Citations}
+
+One of \LaTeX's strengths is its cross-referencing. However, the mechanism for including and organizing the bibliography is out-dated, so requires a little work to use in the best fashion.
+
+The command to reference a bibliography citation is \verb|\cite|. Some
+additional packages (such as \verb|natbib|) introduce additional
+citation commands which allow for more control of the appearance of
+the reference within the text. The \verb|\cite| command takes at least
+one argument, which is the \emph{key} to the article in the
+bibliography.
+
+This section introduces the two most basic ways of building a bibliography in \LaTeX. Only the \verb|Bibtex| method of section~\ref{sec:bibtex} is recommended, and it is best to look at tools mentioned later for ease. Later sections will mainly focus on tools to build, maintain and control bibliographies using the underlying \verb|Bibtex| technology.
+
+Note that when using \LaTeX\ to build a document containing a bibliography it is usually necessary to build the document at least twice, and usually three times. On the first pass it looks in the document and finds which citations are needed. On the second pass it looks in the database and extracts the citations, putting them in the appropriate form. The third pass finalizes the document.
+
+\subsection{Direct inclusion}
+\label{sec:Direct}
+
+The bibliography can be written directly into the \LaTeX\ document using the commands (for example)
+%
+\begin{verbatim}
+\begin{thebibliography}{99}
+
+\bibitem{Duncan98} R. C. Duncan, Astrophys. J. {\bf 498}, L45 (1998).
+
+\end{thebibliography}
+\end{verbatim}
+%
+In this case there is only one item in the bibliography. The \verb|{99}| at the beginning gives the maximum number of entries in the bibliography -- this could be increased if needed. The article key is here \verb|Duncan98|, and would be cross-referenced in the text using \verb|\cite{Duncan98}|.
+
+The advantages of this citation method are
+\begin{enumerate}
+\item speed; you can directly and rapidly change the document,
+\item control; you can control exactly how it appears.
+\end{enumerate}
+
+The disadvantages are numerous.
+\begin{enumerate}
+\item Reuse; for every document you need to copy the reference without error.
+\item Modification; for every different use you need to manually change the appearance of the reference, and do it consistently.
+\item Completeness; there is no simple way to store all additional information about the reference that is not explicitly required (e.g.\ the abstract).
+\item Errors; if you delete the reference from the text you must consistently remove it from the bibliography. If an unpublished article is published, you must consistently update the reference in all documents.
+\item Etc...
+\end{enumerate}
+
+\subsection{Bibtex}
+\label{sec:bibtex}
+
+\verb|Bibtex| was the original solution for the \LaTeX referencing issues outlined above. An example of using \verb|Bibtex| is given in the \verb|BasicLatexBibtex| document, combined with the \verb|nummeth.bib| database file.
+
+In brief, the \verb|Bibtex| file is a database. Written as a plain-text file, each entry is a single reference. An example entry would be
+%
+\begin{verbatim}
+@article{Pareschi2005,
+author = {Pareschi, Lorenzo and Russo, Giovanni},
+doi = {10.1007/s10915-004-4636-4},
+issn = {0885-7474},
+journal = {Journal of Scientific Computing},
+keywords = {65c20,82d25,ams subject classification,high order shock capturing,
+hyperbolic systems with relaxation,kutta methods,runge,schemes,stiff,systems},
+month = oct,
+number = {1},
+pages = {129--155},
+title = {{Implicit-Explicit Runge-Kutta Schemes and Applications to
+Hyperbolic Systems with Relaxation}},
+url = {http://www.springerlink.com/index/10.1007/s10915-004-4636-4},
+volume = {25},
+year = {2005}
+}
+\end{verbatim}
+%
+The \emph{document type} is \verb|article|, as denoted by the \verb|@article|. There are many other possible, including books, reports, theses, unpublished, and many more. The \emph{key} is \verb|Pareschi2005|, to be cited \verb|\cite{Pareschi2005}| in the \LaTeX\ file. Some of the information included is required, but precisely what depends on the document type. For articles the minimum is the key, the author, the journal and the year. All other information \emph{may} be used (if available).
+
+Inside the \LaTeX\ document only two lines are required. For example, in \verb|BasicLatexBibtex| the two lines are
+%
+\begin{verbatim}
+\bibliographystyle{plain}
+\bibliography{nummeth}
+\end{verbatim}
+%
+The first controls the appearance of the bibliography; what order the references appear (e.g.\ alphabetical or in citation order), what information is included, and so on. It also controls how the citations appear in the text (e.g.\ author-date or numerical). The second line says that the references are stored in the \verb|nummeth.bib| file. Multiple \verb|bibtex| files can be referenced, separated by commas (e.g. \verb|\bibliography{file1,file2,file3}|).
+
+The advantages of the \verb|bibtex| database are clear.
+%
+\begin{enumerate}
+\item Reuse across multiple documents is easy.
+\item Additional information is stored with the reference.
+\item Changing styles is simple.
+\item Errors can be corrected in a single place.
+\end{enumerate}
+%
+
+Some disadvantages remain.
+%
+\begin{enumerate}
+\item The \verb|bibtex| database format is difficult to maintain by hand.
+\item Control over the appearance of the reference is less straightforward.
+\item Producing a database from scratch is a lengthy and tedious process.
+\end{enumerate}
+
+\subsection{Constructing and maintaining a database}
+\label{sec:maintaining}
+
+When starting you will build your own database from everything you read, and also inherit a database from your supervisor, group and office-mates. Merging disparate databases by hand, and typing all the details of references into a plain-text database, is a recipe for mistakes and a huge waste of time. Better tools include the following.
+
+\subsubsection{Journal websites}
+\label{sec:journals}
+
+Most published papers have a webpage through the journal, and many of these will export all of the reference information in a standard format. For \verb|bibtex| this typically means the website sends you a plain text file which you can copy and paste into your database.
+
+It is often the case that a little tweaking of the entry will be required -- frequently the article key is not memorable, and the appearance of special characters can be problematic. But this approach can save considerable time, as well as giving you information (DOI, URLs) that other \LaTeX\ tools can use.
+
+\subsubsection{Endnote and similar}
+\label{sec:endnote}
+
+Many people and groups use software such as \href{http://www.endnote.com/}{Endnote} to maintain their bibliographical database. There are free tools to convert between database formats -- see, for example, the \href{http://dret.net/bibconvert/}{ShaRef} service at \verb|http://dret.net/bibconvert/|.
+
+The advantages of packages like Endnote are their wide use (in certain fields), their tools for maintaining the database, and their tools for use with other word-processing packages such as Word. The conversion process will often require a little tweaking, as above.
+
+\subsubsection{Cloud and social reference managers}
+\label{sec:cloud}
+
+Online reference managers are available and are, for basic services, often free. These services include the basic functions of desktop packages such as Endnote, but have two major additional advantages. Firstly, the database is stored online and so available to you anywhere, on any device. Secondly, the tools are frequently well integrated with journal websites. This means that saving a reference to the database is just a single button click.
+
+Examples include
+%
+\begin{enumerate}
+\item \href{http://www.citeulike.org/}{CiteULike} at \verb|http://www.citeulike.org/|
+\item \href{http://www.mendeley.com/}{Mendeley} at \verb|http://www.mendeley.com/|
+\item \href{http://www.zotero.org/}{Zotero} at \verb|http://www.zotero.org/|
+\end{enumerate}
+%
+Each has their own internal database format and will export to other formats, such as \verb|bibtex|, on demand.
+
+The advantages of online reference managers for groups of collaborators and for web integration are obvious; it is definitely worth investigating such tools, and finding out which are standard in your field and group.
+
+\subsection{Controlling the appearance}
+\label{sec:appearance}
+
+Usually when writing a document there is a template to follow, and often that template will be prescriptive. For example, many journals provide \LaTeX\ style files to use, combined with \verb|bibtex| style files as well. In these cases there is no need to control how the references appear.
+
+However, in certain cases (such as your thesis) you may wish for more control. There are three basic methods: using the original \verb|bibtex| styles, using the \verb|natbib| package, or using the \verb|biblatex| package.
+
+\subsubsection{Bibtex styles}
+\label{sec:bibtex_styles}
+
+The original \verb|bibtex| package came with a small selection of styles, and a number of additional styles have been made publically available. Many can be found online -- \href{http://www.cs.stir.ac.uk/~kjt/software/latex/showbst.html}{a sample list} can be found at \verb|http://www.cs.stir.ac.uk/~kjt/software/latex/showbst.html|, and many others exist.
+
+If you are interested in the style being approximately correct, this is usually sufficient.
+
+\subsubsection{Natbib}
+\label{sec:natbib_styles}
+
+The \verb|natbib| package contains additional citation commands, and additional software to build a style file that does exactly what you want. I would say it is now out of date, and \verb|biblatex| is a better package, but it is still widely used.
+
+A few examples of the \href{http://merkel.zoneo.net/Latex/natbib.php}{citation commands provided} include
+%
+\begin{enumerate}
+\item \verb|\citet{Jones90}|, producing ``Jones et al.\ (1990)''
+\item \verb|\citet[chap. 2]{Jones90}|, producing ``Jones et al.\ (1990, chap.\ 2)''
+\item \verb|\citep{Jones90}|, producing ``(Jones et al.\ 1990)''
+\end{enumerate}
+%
+The distinction is between \emph{textual} (\verb|\citet|) and \emph{parenthetical} (\verb|citep|) citations.
+
+In addition, \verb|natbib| has tools for sorting and compressing multiple citations in a single cross-reference, for modifying the appearance of parentheses, for aliasing a citation (i.e.\ replacing a key reference by ``Paper I'' throughout), and much more.
+
+\subsubsection{Biblatex}
+\label{sec:biblatex_styles}
+
+All of the features mentioned above, and more, have been implemented in the \verb|biblatex| package. This allows the use of standard \LaTeX\ macros and commands for controlling the layout and appearance of citations and the bibliography. The \href{http://ctan.org/pkg/biblatex}{package description} can be found at \verb|http://ctan.org/pkg/biblatex|, with \href{http://mirror.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf}{full documentation} at
+\verb|http://mirror.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf|.
+
+There are changes that can be made at the detail level when updating the \verb|biblatex|; see, for example, the \href{http://tex.stackexchange.com/questions/5091/what-to-do-to-switch-to-biblatex}{comments at StackExchange} at \\ \verb|http://tex.stackexchange.com/questions/5091/what-to-do-to-switch-to-biblatex|. This allows you to take advantage of the full features of \verb|biblatex|.
 
 \end{chapter}

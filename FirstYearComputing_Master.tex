@@ -5,6 +5,26 @@
 
 \usepackage{nbconvert_book}
 
+%%%%%
+% User-defined commands for the LaTeX chapter
+% New commands; see section 1.1
+\newcommand{\pda}[2]{\frac{\partial {#1}}{\partial {#2}}}
+\newcommand{\uos}{\textsc{University of Southampton}}
+% Renewed commands; see section 1.2
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+% New environments; see section 2
+\newenvironment{solution}[1]{%
+  \begin{center}
+    \rule{#1}{.1pt}
+  \end{center}
+}{%
+  \begin{center}
+    \rule{0.9\textwidth}{.1pt}
+  \end{center}
+}
+%%%%%
+
 \title{Mathematics with Python}
 
 \begin{document}
