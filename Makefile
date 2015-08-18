@@ -3,7 +3,8 @@ FirstYearComputing_Master.pdf: FirstYearComputing_Master.tex \
 	03-loops-control-flow.tex 04-basic-plotting.tex \
 	05-classes-oop.tex  06-numpy-plotting.tex \
 	07-sympy.tex 08-statistics.tex 09-exceptions-testing.tex \
-	10-generators.tex
+	10-generators.tex \
+	latex_chapter.tex
 	pdflatex $<
 	pdflatex $<
 
