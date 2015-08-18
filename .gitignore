@@ -9,3 +9,4 @@ Exercises*tex
 0*files
 Exercises*files
 .ipynb_checkpoints
+!latex/*pdf
