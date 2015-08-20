@@ -6,7 +6,7 @@ To build these notes you will need
 
 * python (3.3+)
 * ipython (3+)
-* ipython-notebook (not yet tested with jupyter)
+* ipython-notebook or jupyter (the notes recommend jupyter, but that's for forwards compatibility: it should work on ipython-notebook 3+)
 * scipy stack (scipy, sympy, numpy, matplotlib)
 * latex
 * nose
