@@ -1,5 +1,7 @@
 # maths-with-python
 
+[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/IanHawke/maths-with-python)
+
 Gathering some material for a Python class aimed at first year undergraduate mathematicians at Southampton. To be covered in ten hours of labs.
 
 To build these notes you will need
