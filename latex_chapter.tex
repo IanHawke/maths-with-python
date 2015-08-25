@@ -65,6 +65,15 @@ Some editors will (or will let you) build the document one step at a time. In th
 
 To include mathematical notation inline, commands should be placed between dollar signs, \verb|$...$|, so that \verb|$\pi$| gives $\pi$. To create a \emph{displayed} equation, use the \texttt{equation} environment, as in
 %
+\begin{verbatim}
+\begin{equation}
+  \label{eq:label_example}
+  x = y + z.
+\end{equation}
+\end{verbatim}
+%
+which gives
+%
 \begin{equation}
   \label{eq:label_example}
   x = y + z.
