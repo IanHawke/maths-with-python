@@ -10,7 +10,7 @@ The material and presentation style have been strongly influenced by
 * [Newman's *Computational Physics with Python* book](http://www-personal.umich.edu/~mejn/computational-physics/);
 * [Scopatz & Huff's *Effective Computation in Physics*](http://physics.codes/);
 * [Vedran Sego's course at Manchester](http://www.maths.manchester.ac.uk/~vsego/teaching.php);
-* [Lorena Barba's work](http://lorenabarba.com/), particularly with [the Numerical MOOC]()
+* [Lorena Barba's work](http://lorenabarba.com/), particularly with [the Practical Numerical Methods with Python MOOC](https://github.com/numerical-mooc/numerical-mooc)
 
 ## Contributors
 
