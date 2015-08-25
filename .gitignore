@@ -11,4 +11,4 @@ Exercises*files
 .ipynb_checkpoints
 !latex/*pdf
 !pdf/*pdf
-
+__pycache__
