@@ -28,3 +28,5 @@ clean:
 	rm -rf [01]*files
 	rm -f Exercises*tex
 	rm -rf Exercises*files
+	rm -rf __pycache__
+	
