@@ -23,6 +23,15 @@
     ((( add_prompt(cell.source | highlight_code(strip_verbatim=True), cell, 'In ', 'incolor') )))
 ((* endblock input *))
 
+%===============================================================================
+% Hide output (taken from jupyter/ngcm-tutorial/Day-2/nbconvert_templates)
+%===============================================================================
+
+((* block input_group *))
+    ((*- if not cell.metadata.get('nbconvert', {}).get('hide_code', False) -*))
+        ((( super() )))
+    ((*- endif -*))
+((* endblock input_group *))
 
 %===============================================================================
 % Output
