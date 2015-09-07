@@ -24,3 +24,5 @@ People that have directly contributed code, bugfixes, comments and ideas include
 * Sarah Mount
 * Nick (@python33r)
 * Greg Wilson
+* Giampaolo d'Alessandro
+* Sam Mugel
