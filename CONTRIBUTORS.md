@@ -26,3 +26,4 @@ People that have directly contributed code, bugfixes, comments and ideas include
 * Greg Wilson
 * Giampaolo d'Alessandro
 * Sam Mugel
+* Greg Ashton
