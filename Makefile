@@ -14,12 +14,12 @@ FirstYearComputing_Master.pdf: FirstYearComputing_Master.tex \
 	pdflatex $<
 
 %.tex: %.ipynb chapter-base.tplx
-	ipython nbconvert --to latex --template=chapter-ipython.tplx $<
+	jupyter nbconvert --to latex --template=chapter-ipython.tplx $<
 
 Exercises.tex: Exercises.ipynb
-	ipython nbconvert --to latex $<
+	jupyter nbconvert --to latex $<
 ExercisesSolutions.tex: ExercisesSolutions.ipynb
-	ipython nbconvert --to latex $<
+	jupyter nbconvert --to latex $<
 
 clean:
 	rm -f *.{out,log,aux,toc}
@@ -29,4 +29,3 @@ clean:
 	rm -f Exercises*tex
 	rm -rf Exercises*files
 	rm -rf __pycache__
-	
