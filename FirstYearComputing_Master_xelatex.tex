@@ -11,7 +11,8 @@
 % styling: Palatino (main text), Helvetica (stress), Code2000 (exotic text) and Asana Math (for math things)
 \setmainfont{Palatino Linotype}
 \newfontfamily{\maintext}{Palatino Linotype}
-%\newfontfamily{\math}{Asana Math}
+\newfontfamily{\code}{DejaVu Sans Mono}
+\newfontfamily{\math}{Arial}
 
 %%%%%
 % User-defined commands for the LaTeX chapter
@@ -41,6 +42,8 @@
 \maketitle
 
 \tableofcontents
+
+\addtocounter{chapter}{-1}
 
 \include{00-first-steps}
 \include{01-python-basics}
