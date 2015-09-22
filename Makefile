@@ -16,6 +16,12 @@ FirstYearComputing_Master_xelatex.pdf: FirstYearComputing_Master_xelatex.tex \
 		xelatex $<
 		xelatex $<
 
+all_html: index.html \
+		00-first-steps.html 01-python-basics.html 02-programs.html \
+		03-loops-control-flow.html 04-basic-plotting.html \
+		05-classes-oop.html  06-numpy-plotting.html \
+		07-sympy.html 08-statistics.html 09-exceptions-testing.html \
+		10-generators.html
 
 %.pdf: %.tex %.ipynb
 	pdflatex $<
@@ -23,6 +29,9 @@ FirstYearComputing_Master_xelatex.pdf: FirstYearComputing_Master_xelatex.tex \
 
 %.tex: %.ipynb chapter-base.tplx
 	jupyter nbconvert --to latex --template=chapter-ipython.tplx $<
+
+%.html: %.ipynb full-title.tpl
+		jupyter nbconvert --to html --template=full-title.tpl $<
 
 Exercises.tex: Exercises.ipynb
 	jupyter nbconvert --to latex $<
@@ -37,3 +46,4 @@ clean:
 	rm -f Exercises*tex
 	rm -rf Exercises*files
 	rm -rf __pycache__
+	rm -f *.html
