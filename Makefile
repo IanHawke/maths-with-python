@@ -3,7 +3,7 @@ FirstYearComputing_Master.pdf: FirstYearComputing_Master.tex \
 	03-loops-control-flow.tex 04-basic-plotting.tex \
 	05-classes-oop.tex  06-numpy-plotting.tex \
 	07-sympy.tex 08-statistics.tex 09-exceptions-testing.tex \
-	10-generators.tex latex_chapter.tex
+	10-generators.tex 11-more-classes.tex latex_chapter.tex
 	pdflatex $<
 	pdflatex $<
 
@@ -12,7 +12,7 @@ FirstYearComputing_Master_xelatex.pdf: FirstYearComputing_Master_xelatex.tex \
 		03-loops-control-flow.tex 04-basic-plotting.tex \
 		05-classes-oop.tex  06-numpy-plotting.tex \
 		07-sympy.tex 08-statistics.tex 09-exceptions-testing.tex \
-		10-generators.tex latex_chapter.tex
+		10-generators.tex 11-more-classes.tex latex_chapter.tex
 		xelatex $<
 		xelatex $<
 
@@ -21,7 +21,7 @@ all_html: index.html \
 		03-loops-control-flow.html 04-basic-plotting.html \
 		05-classes-oop.html  06-numpy-plotting.html \
 		07-sympy.html 08-statistics.html 09-exceptions-testing.html \
-		10-generators.html
+		10-generators.html 11-more-classes.html
 
 %.pdf: %.tex %.ipynb
 	pdflatex $<
