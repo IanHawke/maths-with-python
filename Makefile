@@ -23,6 +23,13 @@ all_html: index.html \
 		07-sympy.html 08-statistics.html 09-exceptions-testing.html \
 		10-generators.html 11-more-classes.html
 
+web_html: website-index.html \
+		00-first-steps.html 01-python-basics.html 02-programs.html \
+		03-loops-control-flow.html 04-basic-plotting.html \
+		05-classes-oop.html  06-numpy-plotting.html \
+		07-sympy.html 08-statistics.html 09-exceptions-testing.html \
+		10-generators.html 11-more-classes.html
+
 %.pdf: %.tex %.ipynb
 	pdflatex $<
 	pdflatex $<
@@ -38,6 +45,13 @@ Exercises.tex: Exercises.ipynb
 ExercisesSolutions.tex: ExercisesSolutions.ipynb
 	jupyter nbconvert --to latex $<
 
+webpages: web_html
+	mkdir -p webpages
+	cp [01]*html webpages/
+	cp website-index.html webpages/index.html
+	ghp-import -m "Generate website" -b gh-pages webpages
+	git push origin gh-pages
+
 clean:
 	rm -f *.{out,log,aux,toc}
 	rm -rf auto
@@ -47,3 +61,4 @@ clean:
 	rm -rf Exercises*files
 	rm -rf __pycache__
 	rm -f *.html
+	rm -rf webpages
