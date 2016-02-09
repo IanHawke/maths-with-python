@@ -29,3 +29,4 @@ People that have directly contributed code, bugfixes, comments and ideas include
 * Greg Ashton
 * Vanessa Graber
 * Yafet Sanchez Sanchez
+* Ruth Walton
