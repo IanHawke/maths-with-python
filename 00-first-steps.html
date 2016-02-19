@@ -52,8 +52,10 @@
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -326,6 +328,26 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Anaconda">Anaconda<a class="anchor-link" href="#Anaconda">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you have enough bandwidth and time (you will be downloading about 1G of software) then you can use the <a href="https://www.continuum.io/downloads">Anaconda graphical installer</a>. There are two versions of Python: a Python <code>2.X</code> and a Python <code>3.X</code>. There are small differences between the two. Everything we show here will work on either version. We will be using the <code>3.X</code> version.</p>
+<p>The Anaconda package installs both the essential Python package and a large amount of useful Python software. It will put a launcher icon on your desktop. Clicking on the launcher will bring up a window listing a number of applications: we will be using <code>spyder</code> as seen below.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="miniconda">miniconda<a class="anchor-link" href="#miniconda">&#182;</a></h3>
 </div>
 </div>
@@ -335,7 +357,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>First, <a href="http://conda.pydata.org/miniconda.html">download the miniconda package</a> for your computer. There are two versions of Python: a Python <code>2.X</code> and a Python <code>3.X</code>. There are small differences between the two. Everything we show here will work on either version. We will be using the <code>3.X</code> version.</p>
+<p>If you do not want to download all the Python packages, but only the essential ones, there is a smaller version of Anaconda, called miniconda. First, <a href="http://conda.pydata.org/miniconda.html">download the miniconda package</a> for your computer. Again, we will be using the <code>3.X</code> version.</p>
 
 </div>
 </div>
@@ -366,14 +388,16 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Packages may rely on other packages, and may rely on <em>specific versions</em> of other packages in order to work. This can lead to "dependency hell", when you need (for different purposes) package <code>A</code> and package <code>B</code> which rely on conflicting versions of package <code>C</code>.</p>
 <p>The answer to this is <em>environments</em>, which allow you to organize your different packages to minimize conflicts. Environments are like folders, and you have one for each project you are working on. That way, you ensure that updating or installing packages for one project does not cause problems for a different project.</p>
-<p>We will create a single environment called <code>labs</code>. If you are running on a Mac or on Linux, open a terminal. If on Windows, use the Anaconda command prompt. Then type</p>
+<p>To get the most out of environments, we need to use the command line, or terminal.</p>
+<h4 id="Terminals">Terminals<a class="anchor-link" href="#Terminals">&#182;</a></h4><p>A <em>terminal</em>, or a <a href="http://windows.microsoft.com/en-gb/windows-vista/open-a-command-prompt-window"><em>command prompt window</em></a>, is a window where commands can be typed in to directly run commands or affect files. On Windows you select the <code>Command Prompt</code> from the Accessories menu. On Mac or Linux system you open a terminal or an XTerm. Inside the terminal you can change directories using the <code>cd</code> command, and run commands associated with Anaconda or miniconda using the <code>conda</code> command.</p>
+<h4 id="Creating-the-environment">Creating the environment<a class="anchor-link" href="#Creating-the-environment">&#182;</a></h4><p>We will create a single environment called <code>labs</code>. If you are running on a Mac or on Linux, open a terminal. If on Windows, use a command prompt. Then type</p>
 <div class="highlight"><pre>conda create -n labs <span class="nv">python</span><span class="o">=</span>3
 </pre></div>
 <p>This creates the new environment, and installs the basic <code>python</code> package in the <code>python 3.X</code> flavour. It does not activate the environment. In order to work within this environment, if using Windows type</p>
 <div class="highlight"><pre>activate labs
 </pre></div>
 <p>If using Mac or Linux type</p>
-<div class="highlight"><pre><span class="nb">source </span>activate labs
+<div class="highlight"><pre><span class="nb">source</span> activate labs
 </pre></div>
 <p>Then any command launched from the terminal or command prompt will use the packages in this environment.</p>
 
@@ -394,7 +418,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>After creating the environment, and activating it, the key packages that need installing are:</p>
+<p>After creating the environment, and activating it, the key packages that need installing (if using miniconda; they are all installed with the full Anaconda) are:</p>
 <ul>
 <li><code>ipython</code></li>
 <li><code>numpy</code></li>
@@ -415,7 +439,7 @@ div#notebook {
 <div class="highlight"><pre>activate labs
 </pre></div>
 <p>if on Windows, or</p>
-<div class="highlight"><pre><span class="nb">source </span>activate labs
+<div class="highlight"><pre><span class="nb">source</span> activate labs
 </pre></div>
 <p>if on Mac or Linux, and then type</p>
 <div class="highlight"><pre>conda install ipython numpy matplotlib scipy spyder spyder-app sympy <span class="se">\</span>
@@ -441,7 +465,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There are many ways of writing and running Python code. If you open a terminal (on Mac or Linux; on Windows, this would be an Anaconda terminal or a Command Window) you can type <code>python</code> or <code>ipython</code> to launch a very bare bones <em>console</em>. This allows you to enter code which it will then run.</p>
+<p>There are many ways of writing and running Python code. If you open a terminal (on Mac or Linux; on Windows, this would be a Command Prompt) you can type <code>python</code> or <code>ipython</code> to launch a very bare bones <em>console</em>. This allows you to enter code which it will then run.</p>
 <p>More helpful alternatives are <em>Integrated Development Environments</em> (IDEs) or the <em>notebook</em>. The <a href="https://jupyter.org/">Jupyter notebook</a> (previously called the <a href="http://ipython.org/notebook.html">IPython notebook</a>) is browser based and very powerful for exploratory computing. To run, type <code>jupyter notebook</code> in the terminal prompt.</p>
 <p>However, when just getting started, or when writing large codes, IDEs are a better alternative. A simple IDE is <code>spyder</code> which we will use here. To launch, either select <code>spyder</code> from the appropriate menu, or type <code>spyder</code> at the terminal prompt.</p>
 <p>You should then see a screen something like the figure (without the annotations).</p>
@@ -457,7 +481,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The four essential parts of the screen are outlined.</p>
 <ol>
-<li>The console (bottom right, marked in blue). You can work <em>interactively</em> here. Code run, either interactively or from the editor, will output any results here. Error messages will be reported here.</li>
+<li>The console (bottom right, marked in blue). You can work <em>interactively</em> here. Code run, either interactively or from the editor, will output any results here. Error messages will be reported here. There are two types of console: a Python console, and an IPython console. Both will run Python code, but the IPython console is easier to use.</li>
 <li>The editor (left, marked in red). You can write code to be saved to file or run here. This will suggest problems with syntax and has features to help debug and give additional information.</li>
 <li>The inspector (top right, marked in green). Can display detailed help on specific objects (or functions, or...) - the <em>Object inspector</em>, or can display detailed information on the variables that are currently defined - the <em>Variable inspector</em>. Extremely useful when debugging.</li>
 <li>The working directory (marked in yellow). When running a code this is the first place that <code>spyder</code> looks. You should ensure that the working directory is set to the location where the file is.</li>
@@ -565,12 +589,12 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPython 3.4.3
-IPython 4.0.0
+<pre>CPython 3.4.4
+IPython 4.1.1
 
-numpy 1.10.1
-scipy 0.16.0
-matplotlib 1.5.0
+numpy 1.10.4
+scipy 0.17.0
+matplotlib 1.5.1
 sympy 0.7.6.1
 
 compiler   : GCC 4.2.1 (Apple Inc. build 5577)
@@ -580,7 +604,7 @@ machine    : x86_64
 processor  : i386
 CPU cores  : 4
 interpreter: 64bit
-Git hash   : 79e139f1a64e38960ebbd9fb504537a0436ff73d
+Git hash   : c8886df0783a20e915cec64c793a4f8962b1c889
 </pre>
 </div>
 </div>
