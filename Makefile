@@ -28,7 +28,8 @@ web_html: website-index.html \
 		03-loops-control-flow.html 04-basic-plotting.html \
 		05-classes-oop.html  06-numpy-plotting.html \
 		07-sympy.html 08-statistics.html 09-exceptions-testing.html \
-		10-generators.html 11-more-classes.html
+		10-generators.html 11-more-classes.html \
+		ExercisesSolutions.html
 
 %.pdf: %.tex %.ipynb
 	pdflatex $<
@@ -47,8 +48,9 @@ ExercisesSolutions.tex: ExercisesSolutions.ipynb
 
 webpages: web_html
 	mkdir -p webpages
-	cp [01]*html webpages/
+	cp [01]*html ExercisesSolutions.html webpages/
 	cp website-index.html webpages/index.html
+	cp -r images webpages/
 	ghp-import -m "Generate website" -b gh-pages webpages
 	git push origin gh-pages
 
