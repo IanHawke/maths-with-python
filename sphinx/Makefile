@@ -54,7 +54,7 @@ clean:
 
 .PHONY: html
 html: ../[01]*ipynb
-	cp ../[01]*ipynb .
+	cp -n ../[01]*ipynb .
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
@@ -120,7 +120,8 @@ devhelp:
 	@echo "# devhelp"
 
 .PHONY: epub
-epub:
+epub: ../[01]*ipynb
+	cp -n ../[01]*ipynb .
 	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) $(BUILDDIR)/epub
 	@echo
 	@echo "Build finished. The epub file is in $(BUILDDIR)/epub."
