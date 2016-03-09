@@ -9,7 +9,7 @@ Welcome to Maths with Python's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
    00-first-steps
    01-python-basics
