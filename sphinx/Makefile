@@ -49,15 +49,17 @@ help:
 
 .PHONY: clean
 clean:
-	rm ./[01]*ipynb
-	rm images/spyder*png
+	rm -rf ./notebooks
 	rm -rf $(BUILDDIR)/*
 
+notebooks: ../[01]*ipynb
+	mkdir -p notebooks
+	cp ../[01]*ipynb notebooks/
+	mkdir -p notebooks/images
+	cp ../images/spyder*png notebooks/images/
+
 .PHONY: html
-html: ../[01]*ipynb
-	cp -n ../[01]*ipynb .
-	mkdir -p images
-	cp -n ../images/spyder*png images/
+html: notebooks
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
@@ -123,10 +125,7 @@ devhelp:
 	@echo "# devhelp"
 
 .PHONY: epub
-epub: ../[01]*ipynb
-	cp -n ../[01]*ipynb .
-	mkdir -p images
-	cp -n ../images/spyder*png images/
+epub: notebooks
 	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) $(BUILDDIR)/epub
 	@echo
 	@echo "Build finished. The epub file is in $(BUILDDIR)/epub."

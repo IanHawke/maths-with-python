@@ -10,20 +10,9 @@ Contents:
 
 .. toctree::
    :maxdepth: 1
-   :titlesonly:
+   :glob:
 
-   00-first-steps.ipynb
-   01-python-basics.ipynb
-   02-programs.ipynb
-   03-loops-control-flow.ipynb
-   04-basic-plotting.ipynb
-   05-classes-oop.ipynb
-   06-numpy-plotting.ipynb
-   07-sympy.ipynb
-   08-statistics.ipynb
-   09-exceptions-testing.ipynb
-   10-generators.ipynb
-   11-more-classes.ipynb
+   notebooks/*
 
 Indices and tables
 ==================
