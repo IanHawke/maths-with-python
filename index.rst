@@ -14,7 +14,7 @@ First Steps
 .. toctree::
    :maxdepth: 2
 
-   notebooks/00-first-steps
+   00-first-steps
 
 Python Basics
 =============
@@ -22,7 +22,7 @@ Python Basics
 .. toctree::
    :maxdepth: 2
 
-   notebooks/01-python-basics
+   01-python-basics
 
 Programs
 ========
@@ -30,7 +30,7 @@ Programs
 .. toctree::
    :maxdepth: 2
 
-   notebooks/02-programs
+   02-programs
 
 Loops - how to repeat yourself
 ==============================
@@ -38,7 +38,7 @@ Loops - how to repeat yourself
 .. toctree::
    :maxdepth: 2
 
-   notebooks/03-loops-control-flow
+   03-loops-control-flow
 
 Basic Plotting
 ==============
@@ -46,7 +46,7 @@ Basic Plotting
 .. toctree::
    :maxdepth: 2
 
-   notebooks/04-basic-plotting
+   04-basic-plotting
 
 Classes and objects
 ===================
@@ -54,7 +54,7 @@ Classes and objects
 .. toctree::
    :maxdepth: 2
 
-   notebooks/05-classes-oop
+   05-classes-oop
 
 Scientific Python
 =================
@@ -62,7 +62,7 @@ Scientific Python
 .. toctree::
   :maxdepth: 2
 
-  notebooks/06-numpy-plotting
+  06-numpy-plotting
 
 Symbolic Python
 ===============
@@ -70,7 +70,7 @@ Symbolic Python
 .. toctree::
    :maxdepth: 2
 
-   notebooks/07-sympy
+   07-sympy
 
 Statistics
 ==========
@@ -78,7 +78,7 @@ Statistics
 .. toctree::
   :maxdepth: 2
 
-  notebooks/08-statistics
+  08-statistics
 
 Exceptions and Testing
 ======================
@@ -86,7 +86,7 @@ Exceptions and Testing
 .. toctree::
    :maxdepth: 2
 
-   notebooks/09-exceptions-testing
+   09-exceptions-testing
 
 Iterators and Generators
 ========================
@@ -94,7 +94,7 @@ Iterators and Generators
 .. toctree::
    :maxdepth: 2
 
-   notebooks/10-generators
+   10-generators
 
 Classes and OOP
 ===============
@@ -102,7 +102,7 @@ Classes and OOP
 .. toctree::
    :maxdepth: 2
 
-   notebooks/11-more-classes
+   11-more-classes
 
 Indices and tables
 ==================
