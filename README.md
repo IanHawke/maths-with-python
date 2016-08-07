@@ -1,6 +1,8 @@
-# maths-with-python
+# Maths with Python
 
 [![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/IanHawke/maths-with-python)
+[![Documentation Status](https://readthedocs.org/projects/maths-with-python/badge/?version=latest)](http://maths-with-python.readthedocs.org/en/latest/?badge=latest)
+
 
 Gathering some material for a Python class aimed at first year undergraduate mathematicians at Southampton. To be covered in ten hours of labs.
 
