@@ -1,3 +1,10 @@
+runipy_pdf:
+	cp *.tplx nbconvert_book.sty _runipy/
+	cp -r images _runipy/
+	cp latex_chapter.tex FirstYearComputing_Master.tex _runipy/
+	python run_notebooks.py
+	make -C _runipy FirstYearComputing_Master.pdf
+
 FirstYearComputing_Master.pdf: FirstYearComputing_Master.tex \
 	00-first-steps.tex 01-python-basics.tex 02-programs.tex \
 	03-loops-control-flow.tex 04-basic-plotting.tex \
@@ -97,3 +104,6 @@ clean:
 	rm -f *.html
 	rm -rf webpages
 	rm -rf $(BUILDDIR)/*
+	rm -f _runipy/*.{ipynb,tex,out,log,aux,toc}
+	rm -rf _runipy/*_files _runipy/images _runipy/.ipynb_checkpoints
+	rm -f _runipy/*.{tplx,sty}
