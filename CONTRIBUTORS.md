@@ -30,3 +30,4 @@ People that have directly contributed code, bugfixes, comments and ideas include
 * Vanessa Graber
 * Yafet Sanchez Sanchez
 * Ruth Walton
+* Will Woodhead (@lux01)
