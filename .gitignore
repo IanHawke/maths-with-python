@@ -12,3 +12,7 @@ Exercises*files
 !latex/*pdf
 !pdf/*pdf
 __pycache__
+_runipy
+_build
+A_numpy.txt
+simple_plot.png
