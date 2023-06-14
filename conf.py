@@ -30,7 +30,7 @@ import os
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.pngmath',
+    'sphinx.ext.imgmath',
     'nbsphinx',
     'IPython.sphinxext.ipython_console_highlighting',
 ]
